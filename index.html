@@ -40,46 +40,53 @@
     z-index: 9999;
     text-align: center;
     padding: 1rem;
+    box-sizing: border-box;
   }
 
   #password-screen h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+    line-height: 1.2;
   }
 
   #password-screen p {
     margin-bottom: 1rem;
     color: var(--muted);
+    font-size: 1.1rem;
   }
 
   #password-screen input {
-    padding: 0.5rem;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
     border-radius: 6px;
     border: 1px solid var(--accent);
+    width: 250px;
+    max-width: 90%;
+    margin-bottom: 0.5rem;
   }
 
   #password-screen button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     border-radius: 6px;
     border: none;
     background: var(--accent);
     color: #fff;
     cursor: pointer;
+    width: 250px;
+    max-width: 90%;
   }
 
   #password-screen button:hover {
     background: #5f95a6;
   }
 
-  #error-msg { color: #ff4c4c; margin-top: 0.5rem; }
+  #error-msg { color: #ff4c4c; margin-top: 0.5rem; font-size: 0.9rem; }
 
   /* Main content hidden until password is correct */
   #main-content { display:none; }
 
-  /* Your existing styles for site */
+  /* Existing styles for portal */
   .container{
     max-width:var(--container-max);
     margin:0 auto;
@@ -121,190 +128,4 @@
   .main-nav{
     display:flex;
     justify-content:center;
-    gap:0.75rem;
-    margin-top:0.75rem;
-    flex-wrap:wrap;
-  }
-
-  .nav-link{
-    color:var(--text);
-    text-decoration:none;
-    padding:0.5rem 1rem;
-    border-radius:50px;
-    background:#1E2238;
-    border:2px solid var(--accent);
-    font-weight:600;
-    transition: all 0.2s ease;
-  }
-
-  .nav-link:hover{
-    background:var(--accent);
-    color:#fff;
-  }
-
-  .nav-link.active{
-    background:var(--accent);
-    color:#fff;
-  }
-
-  .hero{
-    padding:2rem 0 1.5rem;
-    text-align:center;
-  }
-  .lede{
-    color:var(--muted);
-    max-width:60ch;
-    margin:0.5rem auto 1rem;
-  }
-  .actions{
-    display:flex;
-    gap:1rem;
-    justify-content:center;
-    margin-top:1rem;
-    flex-wrap:wrap;
-  }
-  .btn{
-    display:inline-block;
-    text-decoration:none;
-    text-align:center;
-    border-radius:var(--radius);
-    padding:var(--btn-padding);
-    font-weight:600;
-    color:var(--accent);
-    border:2px solid var(--accent);
-  }
-  .btn-primary{
-    background:var(--accent);
-    color:#ffffff;
-  }
-  .btn-outline{
-    background:transparent;
-    color:var(--accent);
-    border:2px solid var(--accent);
-  }
-
-  .overview{
-    margin-top:1.5rem;
-    padding:1.5rem 0;
-    border-top:1px solid #9199CA33;
-  }
-
-  .site-footer{
-    border-top:1px solid #9199CA33;
-    margin-top:2rem;
-    background:transparent;
-    padding:1rem 0;
-  }
-  .footer-inner{
-    display:flex;
-    flex-direction:column;
-    gap:0.35rem;
-    align-items:center;
-    text-align:center;
-    color:var(--muted);
-  }
-</style>
-</head>
-<body>
-
-<!-- Password screen -->
-<div id="password-screen">
-  <h1>Welcome to Future of Music and Youth Creator Launch</h1>
-  <p>Youth Mentorship Portal</p>
-  <input type="password" id="password" placeholder="Enter password">
-  <br>
-  <button onclick="checkPassword()">Submit</button>
-  <p id="error-msg"></p>
-</div>
-
-<!-- Main portal content -->
-<div id="main-content">
-  <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
-      <span class="brand-title">Future of Music and Youth Creator Launch</span>
-      <span class="brand-subtitle">Youth Mentoring Program</span>
-    </a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-      <a href="survey.html" class="nav-link">Weekly Check-In</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <h1>Welcome to the Future of Music Mentorship Portal</h1>
-      <p class="lede">
-        This is the central portal for the Future of Music Mentorship Program, designed to support youth ages 13–18 in St. Louis through entrepreneurship, academics, and personal growth. Here, mentees can submit their weekly goals and schedule check-ins with their mentors.
-      </p>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
-        <a class="btn btn-outline" href="survey.html">Schedule Weekly Check-In</a>
-      </div>
-    </section>
-
-    <section class="overview">
-      <h2>Program Overview</h2>
-      <p><strong>Purpose:</strong> Support youth ages 13–18 in entrepreneurship, academics, and personal growth.</p>
-      <p><strong>Mission Statement:</strong> To empower youth in St. Louis to build leadership and business skills through peer mentorship and real-world experience.</p>
-      <p><strong>Target Audience:</strong> Youth ages 13–18 in the St. Louis region, especially those interested in business or needing academic guidance.</p>
-
-      <h3>Program Types</h3>
-      <ul>
-        <li>Entrepreneurship Mentorship</li>
-        <li>Academic Mentorship</li>
-        <li>General / Personal Development Mentorship</li>
-      </ul>
-
-      <h3>Format</h3>
-      <ul>
-        <li>1-on-1 mentorship (Virtual / Phone Calls)</li>
-        <li>Weekly meetings</li>
-        <li>Length: 3 months</li>
-      </ul>
-
-      <h3>Mentors</h3>
-      <ul>
-        <li><strong>Executive Director (Aereon):</strong> All-round mentor</li>
-        <li><strong>Managing Director (Qwentin):</strong> All-round mentor</li>
-        <li><strong>Program Coach (Gabriel):</strong> Academic and Personal Development mentor</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Future of Music Mentoring — Mentorship Portal for youth.</p>
-    </div>
-  </footer>
-</div>
-
-<script>
-  // Password logic
-  const passwords = ["YCLMentee", "FOMMentee"];
-  function checkPassword() {
-    const input = document.getElementById('password').value;
-    if (passwords.includes(input)) {
-      document.getElementById('password-screen').style.display = "none";
-      document.getElementById('main-content').style.display = "block";
-    } else {
-      document.getElementById('error-msg').textContent = "Incorrect password, try again.";
-    }
-  }
-
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Set active nav link
-  (function () {
-    const links = document.querySelectorAll('.main-nav .nav-link');
-    links.forEach(link => {
-      if (location.pathname.endsWith(link.getAttribute('href'))) {
-        link.classList.add('active');
-      }
-    });
-  })();
-</script>
-</body>
-</html>
+    gap
