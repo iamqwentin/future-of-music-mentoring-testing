@@ -1,21 +1,14 @@
-/* style.css
-   Simple, professional black & white theme.
-   Mobile-friendly layout for GitHub Pages.
-*/
-
 :root{
-  --bg: #ffffff;
-  --text: #111111;
-  --muted: #666666;
-  --accent: #000000;
+  --bg: #141729;         /* Dark background */
+  --text: #ffffff;       /* White text */
+  --muted: #9199CA;      /* Light muted text */
+  --accent: #76ADCB;     /* Buttons / highlights */
   --container-max: 980px;
   --radius: 8px;
   --gap: 1rem;
   --btn-padding: 0.75rem 1.25rem;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -36,7 +29,7 @@ body{
 
 /* Header */
 .site-header{
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #9199CA;
   background:transparent;
   position:sticky;
   top:0;
@@ -66,7 +59,7 @@ body{
   border-radius:6px;
   font-size:0.95rem;
 }
-.nav-link:hover{background:#f5f5f5}
+.nav-link:hover{background:#9199CA33} /* subtle hover with alpha */
 .nav-link.active{
   font-weight:600;
   text-decoration:underline;
@@ -91,25 +84,27 @@ body{
 }
 .btn-primary{
   background:var(--accent);
-  color:#fff;
+  color:#ffffff;
 }
 .btn-outline{
   background:transparent;
+  color:var(--accent);
+  border:2px solid var(--accent);
 }
 
 /* Sections */
-.how-it-works{margin-top:1.5rem;padding:1.5rem 0;border-top:1px solid #f0f0f0}
-.how-it-works ol{margin:0;padding-left:1.25rem;color:var(--muted)}
+.how-it-works, .overview{margin-top:1.5rem;padding:1.5rem 0;border-top:1px solid #9199CA33}
+.how-it-works ol, .overview ol{margin:0;padding-left:1.25rem;color:var(--muted)}
 
 /* Form page layout */
 .form-page{padding:1rem 0 2rem}
 .form-page h1{margin-top:0}
 .iframe-wrapper{
   margin-top:1rem;
-  border:1px solid #eee;
+  border:1px solid #9199CA33;
   padding:0.5rem;
   border-radius:6px;
-  background:#fafafa;
+  background:#1E2238; /* slightly lighter than bg */
 }
 
 /* Responsive iframe: maintain aspect ratio and be mobile friendly */
@@ -127,7 +122,7 @@ body{
 
 /* Footer */
 .site-footer{
-  border-top:1px solid #f0f0f0;
+  border-top:1px solid #9199CA33;
   margin-top:2rem;
   background:transparent;
   padding:1rem 0;
@@ -141,7 +136,7 @@ ul{margin-top:0}
 
 /* Accessibility: focus states */
 a:focus, button:focus, input:focus, textarea:focus{
-  outline:3px solid rgba(0,0,0,0.12);
+  outline:3px solid rgba(118,173,203,0.4);
   outline-offset:2px;
 }
 
