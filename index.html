@@ -5,31 +5,214 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Future of Music Mentorship Portal</title>
   <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
-  <link rel="stylesheet" href="style.css" />
   <style>
-    /* Header title on one line */
+    :root{
+      --bg: #141729;         /* Dark background */
+      --text: #ffffff;       /* White text */
+      --muted: #9199CA;      /* Light muted text */
+      --accent: #76ADCB;     /* Buttons / highlights */
+      --container-max: 980px;
+      --radius: 8px;
+      --gap: 1rem;
+      --btn-padding: 0.75rem 1.25rem;
+    }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:3rem;
+    }
+
+    /* Container */
+    .container{
+      max-width:var(--container-max);
+      margin:0 auto;
+      padding:1rem;
+    }
+
+    /* Header */
+    .site-header{
+      border-bottom:1px solid #9199CA;
+      background:transparent;
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter: blur(4px);
+      text-align:center;
+      padding:1rem 0;
+    }
+
+    .brand {
+      display:block;
+      color:var(--text);
+      text-decoration:none;
+      margin-bottom:0.5rem;
+    }
+
     .brand-title {
-      display: inline-block;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1.2;
-      white-space: nowrap;
+      font-weight: bold;
+      font-size:1.25rem;
+      display:block;
+    }
+
+    .brand-subtitle {
+      font-weight: normal;
+      font-size:0.9rem;
+      color:var(--muted);
+      display:block;
+      margin-top:0.25rem;
+    }
+
+    /* Navigation bubbles */
+    .main-nav{
+      display:flex;
+      justify-content:center;
+      gap:0.75rem;
+      margin-top:0.75rem;
+      flex-wrap:wrap;
+    }
+
+    .nav-link{
+      color:var(--text);
+      text-decoration:none;
+      padding:0.5rem 1rem;
+      border-radius:50px;
+      background:#1E2238;
+      border:2px solid var(--accent);
+      font-weight:600;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .nav-link.active{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    /* Hero */
+    .hero{
+      padding:2rem 0 1.5rem;
+      text-align:center;
+    }
+    .lede{
+      color:var(--muted);
+      max-width:60ch;
+      margin:0.5rem auto 1rem;
+    }
+    .actions{
+      display:flex;
+      gap:1rem;
+      justify-content:center;
+      margin-top:1rem;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      text-align:center;
+      border-radius:var(--radius);
+      padding:var(--btn-padding);
+      font-weight:600;
+      color:var(--accent);
+      border:2px solid var(--accent);
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#ffffff;
+    }
+    .btn-outline{
+      background:transparent;
+      color:var(--accent);
+      border:2px solid var(--accent);
+    }
+
+    /* Sections */
+    .how-it-works, .overview{
+      margin-top:1.5rem;
+      padding:1.5rem 0;
+      border-top:1px solid #9199CA33;
+    }
+    .how-it-works ol, .overview ol{
+      margin:0;
+      padding-left:1.25rem;
+      color:var(--muted);
+    }
+
+    /* Form page layout */
+    .form-page{padding:1rem 0 2rem}
+    .form-page h1{margin-top:0}
+    .iframe-wrapper{
+      margin-top:1rem;
+      border:1px solid #9199CA33;
+      padding:0.5rem;
+      border-radius:6px;
+      background:#1E2238;
+    }
+
+    .iframe-wrapper iframe{
+      width:100%;
+      min-height:520px;
+      border:0;
+      border-radius:6px;
+      display:block;
+    }
+
+    /* Small notes */
+    .small{font-size:0.85rem;color:var(--muted)}
+    .note{margin-top:0.75rem}
+
+    /* Footer */
+    .site-footer{
+      border-top:1px solid #9199CA33;
+      margin-top:2rem;
+      background:transparent;
+      padding:1rem 0;
+    }
+    .footer-inner{
+      display:flex;
+      flex-direction:column;
+      gap:0.35rem;
+      align-items:center;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    /* Utilities */
+    ul{margin-top:0}
+    .form-fallback{margin-top:0.75rem}
+    .actions .btn{min-width:200px}
+
+    /* Accessibility: focus states */
+    a:focus, button:focus, input:focus, textarea:focus{
+      outline:3px solid rgba(118,173,203,0.4);
+      outline-offset:2px;
+    }
+
+    @media (max-width:640px){
+      .actions .btn{min-width:0;width:100%}
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
-        <span class="brand-title">Future of Music and Youth Creator Launch Youth Mentoring Program</span>
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-        <a href="survey.html" class="nav-link">Weekly Check-In</a>
-      </nav>
-    </div>
+    <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+      <span class="brand-title">Future of Music and Youth Creator Launch</span>
+      <span class="brand-subtitle">Youth Mentoring Program</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+      <a href="survey.html" class="nav-link">Weekly Check-In</a>
+    </nav>
   </header>
 
   <main class="container">
