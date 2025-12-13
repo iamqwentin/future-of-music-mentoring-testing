@@ -1,207 +1,224 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Future of Music Mentorship Portal</title>
-  <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
-  <style>
-    :root{
-      --bg: #141729;
-      --text: #ffffff;
-      --muted: #9199CA;
-      --accent: #76ADCB;
-      --container-max: 980px;
-      --radius: 8px;
-      --gap: 1rem;
-      --btn-padding: 0.75rem 1.25rem;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Future of Music Mentorship Portal</title>
+<style>
+  :root{
+    --bg: #141729;
+    --text: #ffffff;
+    --muted: #9199CA;
+    --accent: #76ADCB;
+    --container-max: 980px;
+    --radius: 8px;
+    --gap: 1rem;
+    --btn-padding: 0.75rem 1.25rem;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.45;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding-bottom:3rem;
-    }
+  body, html {
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: var(--text);
+  }
 
-    .container{
-      max-width:var(--container-max);
-      margin:0 auto;
-      padding:1rem;
-    }
+  /* Password overlay */
+  #password-screen {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 1rem;
+  }
 
-    .site-header{
-      border-bottom:1px solid #9199CA;
-      background:transparent;
-      position:sticky;
-      top:0;
-      z-index:100;
-      backdrop-filter: blur(4px);
-      text-align:center;
-      padding:1rem 0;
-    }
+  #password-screen h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-    .brand {
-      display:block;
-      color:var(--text);
-      text-decoration:none;
-      margin-bottom:0.5rem;
-    }
+  #password-screen p {
+    margin-bottom: 1rem;
+    color: var(--muted);
+  }
 
-    .brand-title {
-      font-weight: bold;
-      font-size:1.25rem;
-      display:block;
-    }
+  #password-screen input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+  }
 
-    .brand-subtitle {
-      font-weight: normal;
-      font-size:0.9rem;
-      color:var(--muted);
-      display:block;
-      margin-top:0.25rem;
-    }
+  #password-screen button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+  }
 
-    .main-nav{
-      display:flex;
-      justify-content:center;
-      gap:0.75rem;
-      margin-top:0.75rem;
-      flex-wrap:wrap;
-    }
+  #password-screen button:hover {
+    background: #5f95a6;
+  }
 
-    .nav-link{
-      color:var(--text);
-      text-decoration:none;
-      padding:0.5rem 1rem;
-      border-radius:50px;
-      background:#1E2238;
-      border:2px solid var(--accent);
-      font-weight:600;
-      transition: all 0.2s ease;
-    }
+  #error-msg { color: #ff4c4c; margin-top: 0.5rem; }
 
-    .nav-link:hover{
-      background:var(--accent);
-      color:#fff;
-    }
+  /* Main content hidden until password is correct */
+  #main-content { display:none; }
 
-    .nav-link.active{
-      background:var(--accent);
-      color:#fff;
-    }
+  /* Your existing styles for site */
+  .container{
+    max-width:var(--container-max);
+    margin:0 auto;
+    padding:1rem;
+  }
 
-    .hero{
-      padding:2rem 0 1.5rem;
-      text-align:center;
-    }
-    .lede{
-      color:var(--muted);
-      max-width:60ch;
-      margin:0.5rem auto 1rem;
-    }
-    .actions{
-      display:flex;
-      gap:1rem;
-      justify-content:center;
-      margin-top:1rem;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-block;
-      text-decoration:none;
-      text-align:center;
-      border-radius:var(--radius);
-      padding:var(--btn-padding);
-      font-weight:600;
-      color:var(--accent);
-      border:2px solid var(--accent);
-    }
-    .btn-primary{
-      background:var(--accent);
-      color:#ffffff;
-    }
-    .btn-outline{
-      background:transparent;
-      color:var(--accent);
-      border:2px solid var(--accent);
-    }
+  .site-header{
+    border-bottom:1px solid #9199CA;
+    background:transparent;
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter: blur(4px);
+    text-align:center;
+    padding:1rem 0;
+  }
 
-    .how-it-works, .overview{
-      margin-top:1.5rem;
-      padding:1.5rem 0;
-      border-top:1px solid #9199CA33;
-    }
-    .how-it-works ol, .overview ol{
-      margin:0;
-      padding-left:1.25rem;
-      color:var(--muted);
-    }
+  .brand {
+    display:block;
+    color:var(--text);
+    text-decoration:none;
+    margin-bottom:0.5rem;
+  }
 
-    .form-page{padding:1rem 0 2rem}
-    .form-page h1{margin-top:0}
-    .iframe-wrapper{
-      margin-top:1rem;
-      border:1px solid #9199CA33;
-      padding:0.5rem;
-      border-radius:6px;
-      background:#1E2238;
-    }
+  .brand-title {
+    font-weight: bold;
+    font-size:1.25rem;
+    display:block;
+  }
 
-    .iframe-wrapper iframe{
-      width:100%;
-      min-height:520px;
-      border:0;
-      border-radius:6px;
-      display:block;
-    }
+  .brand-subtitle {
+    font-weight: normal;
+    font-size:0.9rem;
+    color:var(--muted);
+    display:block;
+    margin-top:0.25rem;
+  }
 
-    .small{font-size:0.85rem;color:var(--muted)}
-    .note{margin-top:0.75rem}
+  .main-nav{
+    display:flex;
+    justify-content:center;
+    gap:0.75rem;
+    margin-top:0.75rem;
+    flex-wrap:wrap;
+  }
 
-    .site-footer{
-      border-top:1px solid #9199CA33;
-      margin-top:2rem;
-      background:transparent;
-      padding:1rem 0;
-    }
-    .footer-inner{
-      display:flex;
-      flex-direction:column;
-      gap:0.35rem;
-      align-items:center;
-      text-align:center;
-      color:var(--muted);
-    }
+  .nav-link{
+    color:var(--text);
+    text-decoration:none;
+    padding:0.5rem 1rem;
+    border-radius:50px;
+    background:#1E2238;
+    border:2px solid var(--accent);
+    font-weight:600;
+    transition: all 0.2s ease;
+  }
 
-    ul{margin-top:0}
-    .form-fallback{margin-top:0.75rem}
-    .actions .btn{min-width:200px}
+  .nav-link:hover{
+    background:var(--accent);
+    color:#fff;
+  }
 
-    a:focus, button:focus, input:focus, textarea:focus{
-      outline:3px solid rgba(118,173,203,0.4);
-      outline-offset:2px;
-    }
+  .nav-link.active{
+    background:var(--accent);
+    color:#fff;
+  }
 
-    @media (max-width:640px){
-      .actions .btn{min-width:0;width:100%}
-    }
-  </style>
+  .hero{
+    padding:2rem 0 1.5rem;
+    text-align:center;
+  }
+  .lede{
+    color:var(--muted);
+    max-width:60ch;
+    margin:0.5rem auto 1rem;
+  }
+  .actions{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    margin-top:1rem;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    text-align:center;
+    border-radius:var(--radius);
+    padding:var(--btn-padding);
+    font-weight:600;
+    color:var(--accent);
+    border:2px solid var(--accent);
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#ffffff;
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--accent);
+    border:2px solid var(--accent);
+  }
+
+  .overview{
+    margin-top:1.5rem;
+    padding:1.5rem 0;
+    border-top:1px solid #9199CA33;
+  }
+
+  .site-footer{
+    border-top:1px solid #9199CA33;
+    margin-top:2rem;
+    background:transparent;
+    padding:1rem 0;
+  }
+  .footer-inner{
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    align-items:center;
+    text-align:center;
+    color:var(--muted);
+  }
+</style>
 </head>
 <body>
-  <script>
-    const passwords = ["YCLMentee", "FOMMentee"];
-    let userPass = prompt("Enter password to access the site:");
-    if (!passwords.includes(userPass)) {
-      alert("Incorrect password. You cannot access this site.");
-      window.location.href = "https://www.google.com"; // redirect
-    }
-  </script>
 
+<!-- Password screen -->
+<div id="password-screen">
+  <h1>Welcome to Future of Music and Youth Creator Launch</h1>
+  <p>Youth Mentorship Portal</p>
+  <input type="password" id="password" placeholder="Enter password">
+  <br>
+  <button onclick="checkPassword()">Submit</button>
+  <p id="error-msg"></p>
+</div>
+
+<!-- Main portal content -->
+<div id="main-content">
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
       <span class="brand-title">Future of Music and Youth Creator Launch</span>
@@ -261,17 +278,33 @@
       <p>© <span id="year"></span> Future of Music Mentoring — Mentorship Portal for youth.</p>
     </div>
   </footer>
+</div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    (function () {
-      const links = document.querySelectorAll('.main-nav .nav-link');
-      links.forEach(link => {
-        if (location.pathname.endsWith(link.getAttribute('href'))) {
-          link.classList.add('active');
-        }
-      });
-    })();
-  </script>
+<script>
+  // Password logic
+  const passwords = ["YCLMentee", "FOMMentee"];
+  function checkPassword() {
+    const input = document.getElementById('password').value;
+    if (passwords.includes(input)) {
+      document.getElementById('password-screen').style.display = "none";
+      document.getElementById('main-content').style.display = "block";
+    } else {
+      document.getElementById('error-msg').textContent = "Incorrect password, try again.";
+    }
+  }
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Set active nav link
+  (function () {
+    const links = document.querySelectorAll('.main-nav .nav-link');
+    links.forEach(link => {
+      if (location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('active');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
