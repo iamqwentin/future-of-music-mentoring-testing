@@ -25,22 +25,13 @@
   <main class="container">
     <article class="form-page">
       <h1>Schedule Your Weekly Check-In</h1>
-      <p class="lede">Select your mentor below to schedule your check-in:</p>
-
-      <label for="mentor-select">Choose a mentor:</label>
-      <select id="mentor-select">
-        <option value="">-- Select Mentor --</option>
-        <option value="https://calendar.app.google/cLQsaLxg9FR5UzmW9">Aereon</option>
-        <option value="https://calendar.app.google/example-gabriel-link">Gabriel</option>
-        <option value="https://calendar.app.google/example-qwentin-link">Qwentin</option>
-      </select>
+      <p class="lede">Use the embedded widget below to schedule your 30-minute check-in with your mentor.</p>
 
       <section class="iframe-wrapper" aria-label="Weekly check-in scheduling">
         <iframe
-          id="mentor-calendar"
-          src=""
-          title="Weekly Check-In Scheduling"
-          width="640"
+          src="https://calendly.com/aereon-fomusic/30min"
+          title="Schedule Check-In with Aereon"
+          width="100%"
           height="800"
           frameborder="0"
           scrolling="no"
@@ -48,8 +39,8 @@
       </section>
 
       <p class="form-fallback">
-        If the calendar does not appear above, open it in a new tab:
-        <a id="fallback-link" href="" target="_blank" rel="noopener">Open Mentor Calendar</a>
+        If the scheduling form does not appear above, open it in a new tab:
+        <a href="https://calendly.com/aereon-fomusic/30min" target="_blank" rel="noopener">Schedule with Aereon</a>
       </p>
     </article>
   </main>
@@ -62,16 +53,6 @@
 
   <script>
     document.getElementById('year-survey').textContent = new Date().getFullYear();
-
-    const select = document.getElementById('mentor-select');
-    const iframe = document.getElementById('mentor-calendar');
-    const fallback = document.getElementById('fallback-link');
-
-    select.addEventListener('change', function() {
-      const url = this.value;
-      iframe.src = url;
-      fallback.href = url;
-    });
 
     // Set active nav link
     (function () {
