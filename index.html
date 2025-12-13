@@ -7,10 +7,10 @@
   <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
   <style>
     :root{
-      --bg: #141729;         /* Dark background */
-      --text: #ffffff;       /* White text */
-      --muted: #9199CA;      /* Light muted text */
-      --accent: #76ADCB;     /* Buttons / highlights */
+      --bg: #141729;
+      --text: #ffffff;
+      --muted: #9199CA;
+      --accent: #76ADCB;
       --container-max: 980px;
       --radius: 8px;
       --gap: 1rem;
@@ -28,7 +28,6 @@
       padding-bottom:3rem;
     }
 
-    /* Container */
     .container{
       max-width:var(--container-max);
       margin:0 auto;
@@ -68,7 +67,6 @@
       margin-top:0.25rem;
     }
 
-    /* Navigation bubbles */
     .main-nav{
       display:flex;
       justify-content:center;
@@ -88,26 +86,22 @@
       transition: all 0.2s ease;
     }
 
-    .nav-link:hover{
+    .nav-link:hover, .nav-link.active{
       background:var(--accent);
       color:#fff;
     }
 
-    .nav-link.active{
-      background:var(--accent);
-      color:#fff;
-    }
-
-    /* Hero */
     .hero{
       padding:2rem 0 1.5rem;
       text-align:center;
     }
+
     .lede{
       color:var(--muted);
       max-width:60ch;
       margin:0.5rem auto 1rem;
     }
+
     .actions{
       display:flex;
       gap:1rem;
@@ -115,6 +109,7 @@
       margin-top:1rem;
       flex-wrap:wrap;
     }
+
     .btn{
       display:inline-block;
       text-decoration:none;
@@ -135,7 +130,6 @@
       border:2px solid var(--accent);
     }
 
-    /* Sections */
     .how-it-works, .overview{
       margin-top:1.5rem;
       padding:1.5rem 0;
@@ -147,9 +141,6 @@
       color:var(--muted);
     }
 
-    /* Form page layout */
-    .form-page{padding:1rem 0 2rem}
-    .form-page h1{margin-top:0}
     .iframe-wrapper{
       margin-top:1rem;
       border:1px solid #9199CA33;
@@ -166,11 +157,9 @@
       display:block;
     }
 
-    /* Small notes */
     .small{font-size:0.85rem;color:var(--muted)}
     .note{margin-top:0.75rem}
 
-    /* Footer */
     .site-footer{
       border-top:1px solid #9199CA33;
       margin-top:2rem;
@@ -186,12 +175,10 @@
       color:var(--muted);
     }
 
-    /* Utilities */
     ul{margin-top:0}
     .form-fallback{margin-top:0.75rem}
     .actions .btn{min-width:200px}
 
-    /* Accessibility: focus states */
     a:focus, button:focus, input:focus, textarea:focus{
       outline:3px solid rgba(118,173,203,0.4);
       outline-offset:2px;
@@ -203,6 +190,13 @@
   </style>
 </head>
 <body>
+  <script>
+    // Redirect to login if not logged in
+    if (sessionStorage.getItem("menteeLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
       <span class="brand-title">Future of Music and Youth Creator Launch</span>
@@ -264,18 +258,14 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Set active nav link
-    (function () {
-      const links = document.querySelectorAll('.main-nav .nav-link');
-      links.forEach(link => {
-        if (location.pathname.endsWith(link.getAttribute('href'))) {
-          link.classList.add('active');
-        }
-      });
-    })();
+    const links = document.querySelectorAll('.main-nav .nav-link');
+    links.forEach(link => {
+      if (location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('active');
+      }
+    });
   </script>
 </body>
 </html>
