@@ -7,17 +7,19 @@
   <meta name="description" content="Schedule your weekly check-in with your mentor." />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
-        <strong>Future of Music</strong>
+        <strong>Future of Music &amp; Youth Creator Launch</strong><br>
         <span class="tagline">Youth Mentoring Program</span>
       </a>
+
       <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
-        <a href="survey.html" class="nav-link">Weekly Check-In</a>
+        <a href="survey.html" class="nav-link active">Weekly Check-In</a>
       </nav>
     </div>
   </header>
@@ -25,7 +27,9 @@
   <main class="container">
     <article class="form-page">
       <h1>Schedule Your Weekly Check-In</h1>
-      <p class="lede">Select your mentor below and schedule your 5–10 minute check-in.</p>
+      <p class="lede">
+        Select your mentor below and schedule your 5–10 minute check-in.
+      </p>
 
       <label for="mentor-select">Who is your mentor?</label>
       <select id="mentor-select">
@@ -49,7 +53,9 @@
       </section>
 
       <p class="form-fallback">
-        <a id="fallback-link" href="" target="_blank" rel="noopener" style="display:none;">Open Mentor Calendar</a>
+        <a id="fallback-link" href="" target="_blank" rel="noopener" style="display:none;">
+          Open Mentor Calendar
+        </a>
       </p>
     </article>
   </main>
@@ -67,9 +73,9 @@
     const iframe = document.getElementById('mentor-calendar');
     const fallback = document.getElementById('fallback-link');
 
-    select.addEventListener('change', function() {
+    select.addEventListener('change', function () {
       const url = this.value;
-      if(url) {
+      if (url) {
         iframe.src = url;
         iframe.style.display = 'block';
         fallback.href = url;
