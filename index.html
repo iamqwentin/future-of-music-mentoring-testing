@@ -4,82 +4,153 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Future of Music Mentorship Portal</title>
-  <meta name="description" content="Portal for the Future of Music Mentorship Program, supporting youth in entrepreneurship, academics, and personal growth." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Portal for the Future of Music Mentorship Program." />
 
   <style>
-    /* ===== PASSWORD OVERLAY ===== */
-    #password-screen {
-      position: fixed;
-      inset: 0;
-      background: #141729;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 1rem;
-      box-sizing: border-box;
+    :root{
+      --bg:#141729;
+      --card:#1c2040;
+      --text:#ffffff;
+      --muted:#b5bbff;
+      --accent:#76ADCB;
     }
 
-    .password-box {
-      width: 100%;
-      max-width: 380px;
-      background: #1c2040;
-      padding: 2rem;
-      border-radius: 10px;
-      text-align: center;
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      text-align:center;
     }
 
-    .password-box h1 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #fff;
-      font-weight: bold;
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      padding:1.25rem;
     }
 
-    .password-box p {
-      margin: 0.5rem 0 1.25rem;
-      color: #b5bbff;
-      font-size: 0.95rem;
-    }
-
-    .password-box input {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      margin-bottom: 0.75rem;
-      box-sizing: border-box;
-    }
-
-    .password-box button {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      background: #76ADCB;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .password-box button:hover {
-      background: #5f95a6;
-    }
-
-    #error-msg {
-      margin-top: 0.75rem;
-      color: #ff5c5c;
-      font-size: 0.9rem;
-    }
-
-    /* Hide site until unlocked */
-    body.locked main,
+    /* ===== PASSWORD SCREEN ===== */
     body.locked header,
-    body.locked footer {
-      display: none;
+    body.locked main,
+    body.locked footer{
+      display:none;
+    }
+
+    #password-screen{
+      position:fixed;
+      inset:0;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+      z-index:9999;
+    }
+
+    .password-box{
+      background:var(--card);
+      padding:2rem;
+      border-radius:12px;
+      width:100%;
+      max-width:380px;
+    }
+
+    .password-box h1{
+      margin:0;
+      font-size:1.5rem;
+      font-weight:700;
+    }
+
+    .password-box p{
+      margin:.5rem 0 1.25rem;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .password-box input{
+      width:100%;
+      padding:.75rem;
+      font-size:1rem;
+      border-radius:6px;
+      border:none;
+      margin-bottom:.75rem;
+    }
+
+    .password-box button{
+      width:100%;
+      padding:.75rem;
+      border-radius:6px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      font-size:1rem;
+      cursor:pointer;
+    }
+
+    #error-msg{
+      margin-top:.75rem;
+      color:#ff6b6b;
+      font-size:.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header{
+      border-bottom:1px solid rgba(255,255,255,.15);
+      padding:1.5rem 0;
+    }
+
+    .brand{
+      font-size:1.35rem;
+      font-weight:800;
+    }
+
+    .subtitle{
+      margin-top:.25rem;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+
+    .main-nav{
+      margin-top:1rem;
+      display:flex;
+      justify-content:center;
+      gap:.75rem;
+      flex-wrap:wrap;
+    }
+
+    .nav-link{
+      text-decoration:none;
+      padding:.5rem 1rem;
+      border-radius:999px;
+      background:#1e2347;
+      border:2px solid var(--accent);
+      color:#fff;
+      font-weight:600;
+    }
+
+    .nav-link:hover{
+      background:var(--accent);
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      padding:2rem 0;
+    }
+
+    .hero p{
+      color:var(--muted);
+      max-width:60ch;
+      margin:.75rem auto 0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      margin-top:2rem;
+      padding:1rem 0;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.15);
     }
   </style>
 </head>
@@ -90,20 +161,18 @@
   <div id="password-screen">
     <div class="password-box">
       <h1>Future of Music</h1>
-      <p>Youth Creator Launch<br>Mentoring Portal</p>
-      <input type="password" id="password-input" placeholder="Enter password" />
+      <p>Youth Creator Launch<br>Youth Mentorship Portal</p>
+      <input type="password" id="password-input" placeholder="Enter password">
       <button onclick="checkPassword()">Enter</button>
       <div id="error-msg"></div>
     </div>
   </div>
 
-  <!-- ORIGINAL SITE CONTENT (UNCHANGED) -->
+  <!-- SITE CONTENT -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <strong>Future of Music & Youth Creator Launch</strong><br>
-        <span class="tagline">Youth Mentoring Program</span>
-      </a>
+    <div class="container">
+      <div class="brand">Future of Music & Youth Creator Launch</div>
+      <div class="subtitle">Youth Mentoring Program</div>
 
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Home</a>
@@ -115,46 +184,43 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Welcome to the Future of Music Mentorship Portal</h1>
-      <p class="lede">
-        This is the central portal for the Future of Music Mentorship Program, designed to support youth ages 13–18 in St. Louis through entrepreneurship, academics, and personal growth.
+      <h1>Welcome</h1>
+      <p>
+        This portal supports youth ages 13–18 through entrepreneurship,
+        academics, and personal growth via structured mentorship.
       </p>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="goals.html">Submit Weekly Goals</a>
-        <a class="btn btn-outline" href="survey.html">Schedule Weekly Check-In</a>
-      </div>
-    </section>
-
-    <section class="overview">
-      <h2>Program Overview</h2>
-      <p><strong>Purpose:</strong> Support youth ages 13–18 in entrepreneurship, academics, and personal growth.</p>
-      <p><strong>Mission Statement:</strong> To empower youth in St. Louis to build leadership and business skills through peer mentorship and real-world experience.</p>
-      <p><strong>Target Audience:</strong> Youth ages 13–18 in the St. Louis region.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Future of Music Mentoring</p>
-    </div>
+  <footer>
+    © <span id="year"></span> Future of Music Mentoring
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function checkPassword() {
-      const input = document.getElementById('password-input').value;
-      const error = document.getElementById('error-msg');
+    // Check if already unlocked
+    if (localStorage.getItem("fomAccess") === "true") {
+      unlockSite();
+    }
 
-      if (input === "YCLMentee" || input === "FOMMentee") {
-        document.getElementById('password-screen').style.display = "none";
-        document.body.classList.remove("locked");
+    function checkPassword(){
+      const pass = document.getElementById("password-input").value;
+      const error = document.getElementById("error-msg");
+
+      if (pass === "YCLMentee" || pass === "FOMMentee") {
+        localStorage.setItem("fomAccess","true");
+        unlockSite();
       } else {
-        error.textContent = "Incorrect password. Try again.";
+        error.textContent = "Incorrect password";
       }
     }
+
+    function unlockSite(){
+      document.body.classList.remove("locked");
+      document.getElementById("password-screen").style.display = "none";
+    }
   </script>
+
 </body>
 </html>
