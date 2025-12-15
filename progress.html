@@ -156,7 +156,6 @@
 
 <main class="container">
 
-  <!-- Mentee Lookup -->
   <div class="card" id="lookup">
     <h2>View Your Progress</h2>
     <p style="color:var(--muted)">
@@ -168,12 +167,9 @@
     <div class="error" id="errorMsg"></div>
   </div>
 
-  <!-- Progress Card -->
   <div class="card" id="progressCard" style="display:none;">
     <h2 id="menteeName">Progress Overview</h2>
     <p style="color:var(--muted)">This dashboard reflects growth across the R3 pillars.</p>
-
-    <!-- Progress sections will be generated dynamically -->
     <div id="progressSections"></div>
   </div>
 
@@ -186,15 +182,10 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // --- Mentee data with progress set to zero ---
   const mentees = {
     "jeremiah": {
       name: "Jeremiah",
-      programs: {
-        academics: true,
-        personal: true,
-        entrepreneurship: true
-      },
+      programs: { academics: true, personal: true, entrepreneurship: true },
       progress: {
         academics: { percent: 0, notes: ["Not started yet"] },
         personal: { percent: 0, notes: ["Not started yet"] },
@@ -203,21 +194,23 @@
     },
     "billy": {
       name: "Billy",
-      programs: {
-        academics: true,
-        personal: true,
-        entrepreneurship: true
-      },
+      programs: { academics: true, personal: true, entrepreneurship: true },
       progress: {
         academics: { percent: 0, notes: ["Not started yet"] },
         personal: { percent: 0, notes: ["Not started yet"] },
         entrepreneurship: { percent: 0, notes: ["Not started yet"] }
       }
+    },
+    "leah": {
+      name: "Leah",
+      programs: { academics: true, personal: true, entrepreneurship: false },
+      progress: {
+        academics: { percent: 0, notes: ["Not started yet"] },
+        personal: { percent: 0, notes: ["Not started yet"] }
+      }
     }
-    // --- Add new mentees here ---
   };
 
-  // --- Function to load mentee progress ---
   function loadProgress() {
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
     const error = document.getElementById("errorMsg");
