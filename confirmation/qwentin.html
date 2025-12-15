@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Check-In Confirmed — Future of Music Mentoring</title>
+    <meta name="description" content="Your weekly check-in with your mentor is confirmed." />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Future of Music Mentoring home">
+                <strong>Future of Music &amp; Youth Creator Launch</strong><br>
+                <span class="tagline">Youth Mentoring Program</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="goals.html" class="nav-link">Submit Weekly Goals</a>
+                <a href="survey.html" class="nav-link">Weekly Check-In</a>
+                <a href="progress.html" class="nav-link">Progress</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="form-page">
+            <h1>✅ Check-In Confirmed!</h1>
+            <p class="lede">
+                Your weekly check-in with your mentor has been successfully scheduled.
+            </p>
+
+            <section class="confirmation-details">
+                <h2>Meeting Details</h2>
+                <p><strong>Mentor:</strong> [Mentor Name]</p>
+                <p><strong>Date & Time:</strong> [Day of Week], [Month Day] at [Time] [Timezone]</p>
+                <p><strong>Duration:</strong> 10 Minutes</p>
+                <p><strong>Location:</strong> Check your email for the meeting link (usually via Google Meet or Zoom).</p>
+            </section>
+            
+            <p style="margin-top: 30px;">
+                A confirmation email with all the details and a link to add it to your calendar has been sent to your inbox.
+            </p>
+            
+            <div class="next-steps" style="margin-top: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                <h3>What's Next?</h3>
+                <ul>
+                    <li>Make sure to <a href="goals.html">**Submit Your Weekly Goals**</a> before your check-in!</li>
+                    <li>If you need to reschedule, please use the link provided in your confirmation email.</li>
+                </ul>
+            </div>
+            
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span id="year-confirmation"></span> Future of Music Mentoring</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year-confirmation').textContent = new Date().getFullYear();
+
+        // Set active nav link - For a confirmation page, the "Weekly Check-In" link should remain active
+        (function () {
+            const links = document.querySelectorAll('.main-nav .nav-link');
+            links.forEach(link => {
+                // Assuming this confirmation page follows the 'survey.html' flow.
+                if (link.getAttribute('href') === 'survey.html') {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
