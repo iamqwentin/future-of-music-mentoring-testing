@@ -266,6 +266,14 @@
       background:var(--accent);
     }
   </style>
+ <script>
+  // Hover soundless micro-interaction feel
+  document.querySelectorAll('button, .btn, .nav-link').forEach(el=>{
+    el.addEventListener('mouseenter',()=> {
+      el.style.transition = "all .25s ease";
+    });
+  });
+</script>
 </head>
 
 <body class="locked">
