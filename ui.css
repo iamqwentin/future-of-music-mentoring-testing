@@ -1,0 +1,110 @@
+/* =====================
+   THEME SYSTEM
+===================== */
+:root{
+  --bg-main:#0f1224;
+  --bg-card:rgba(30,34,56,0.75);
+  --text-main:#ffffff;
+  --accent:#76ADCB;
+  --accent-glow:rgba(118,173,203,.45);
+}
+
+[data-theme="light"]{
+  --bg-main:#f4f6ff;
+  --bg-card:#ffffff;
+  --text-main:#0f1224;
+}
+
+/* Apply theme */
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+  transition:background .4s ease, color .4s ease;
+}
+
+/* =====================
+   HOVER PULSE (NO SOUND)
+===================== */
+.pulse{
+  position:relative;
+}
+.pulse::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius:inherit;
+  border:2px solid var(--accent);
+  opacity:0;
+  transition:.3s;
+}
+.pulse:hover::after{
+  opacity:1;
+  animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);opacity:.8}
+  100%{transform:scale(1.15);opacity:0}
+}
+
+/* =====================
+   PROGRESS BARS
+===================== */
+.progress-wrap{
+  background:#1E2238;
+  border-radius:999px;
+  overflow:hidden;
+  height:14px;
+}
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),#9fdcff);
+  box-shadow:0 0 16px var(--accent-glow);
+  transition:width 1.2s ease;
+}
+
+/* =====================
+   AVATARS
+===================== */
+.avatar{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#9fdcff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  color:#fff;
+  box-shadow:0 0 20px var(--accent-glow);
+}
+
+/* =====================
+   BADGES
+===================== */
+.badges{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+.badge{
+  padding:.4rem .75rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  font-size:.8rem;
+  font-weight:700;
+}
+.badge.fire{background:#ff6b6b}
+.badge.star{background:#ffd166}
+
+/* =====================
+   NEON COLOR PICKER
+===================== */
+.color-dot{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 0 10px currentColor;
+}
