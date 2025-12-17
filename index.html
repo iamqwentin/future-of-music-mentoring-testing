@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Future of Music Mentorship</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — Future of Music Mentorship</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<script>
+/* ================================
+   AUTH GUARD
+================================ */
+const authUser = JSON.parse(localStorage.getItem("authUser"));
+if(!authUser){
+  window.location.href = "login.html";
+}
+</script>
 
 <header>
   <h1>Future of Music Mentorship</h1>
@@ -17,44 +27,54 @@
     <a href="goals.html">Goals</a>
     <a href="survey.html">Check-In</a>
     <a href="progress.html">Progress</a>
+    <a href="#" onclick="logout()">Logout</a>
   </nav>
 </header>
 
 <div class="container">
 
+  <!-- USER CARD -->
   <div class="card">
-    <div style="display:flex;gap:1rem;align-items:center">
-      <div class="avatar">J</div>
+    <div style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap">
+
+      <div class="avatar" id="avatar"></div>
+
       <div>
-        <strong>Jeremiah</strong><br>
-        <span id="rank"></span>
+        <h2 style="margin:.25rem 0" id="name"></h2>
+        <div id="roleBadge"></div>
+        <div style="margin-top:.5rem;color:var(--muted)">
+          Rank: <strong id="rank"></strong>
+        </div>
       </div>
+
     </div>
 
-    <div style="margin-top:1rem">
-      <span class="badge fire">🔥 3 Week Streak</span>
-      <span class="badge star">⭐ Goals Met</span>
+    <!-- XP / LEVEL -->
+    <div style="margin-top:1.5rem">
+      <h3>
+        Level <span id="level"></span>
+      </h3>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="xpBar"></div>
+      </div>
+
+      <p style="font-size:.85rem;color:var(--muted)">
+        XP: <span id="xp"></span> / <span id="nextXP"></span>
+      </p>
     </div>
 
-    <h3 style="margin-top:1.5rem">
-      Level <span id="level"></span>
-    </h3>
-
-    <div class="progress-wrap">
-      <div class="progress-bar" id="xpBar"></div>
+    <!-- QUICK ACTIONS -->
+    <div style="margin-top:1.75rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a class="btn" href="goals.html">Set Goals</a>
+      <a class="btn" href="survey.html">Weekly Check-In</a>
+      <a class="btn" href="progress.html">View Progress</a>
     </div>
-    <p style="font-size:.85rem;color:var(--muted)">
-      XP: <span id="xp"></span> / <span id="nextXP"></span>
-    </p>
-
-    <a class="btn" href="goals.html" style="margin-top:1.5rem;display:inline-block">
-      Set Weekly Goals
-    </a>
   </div>
 
 </div>
 
-<!-- Floating UI -->
+<!-- FLOATING UI -->
 <div id="ui">
   <button onclick="toggleTheme()">🌙</button>
   <div class="dot" style="color:#76ADCB" onclick="setAccent('#76ADCB')"></div>
@@ -63,24 +83,58 @@
 </div>
 
 <script>
-/* THEME */
+/* ================================
+   LOGOUT
+================================ */
+function logout(){
+  localStorage.removeItem("authUser");
+  window.location.href = "login.html";
+}
+
+/* ================================
+   THEME
+================================ */
 function toggleTheme(){
   document.body.dataset.theme =
-    document.body.dataset.theme==="light"?"":"light";
-  localStorage.theme=document.body.dataset.theme;
+    document.body.dataset.theme==="light" ? "" : "light";
+  localStorage.theme = document.body.dataset.theme;
 }
-document.body.dataset.theme=localStorage.theme||"";
+document.body.dataset.theme = localStorage.theme || "";
 
-/* ACCENT */
-function setAccent(c){
-  document.documentElement.style.setProperty("--accent",c);
-  document.documentElement.style.setProperty("--glow",c+"88");
-  localStorage.accent=c;
+/* ================================
+   ACCENT COLOR
+================================ */
+function setAccent(color){
+  document.documentElement.style.setProperty("--accent", color);
+  document.documentElement.style.setProperty("--glow", color + "88");
+  localStorage.accent = color;
 }
-if(localStorage.accent)setAccent(localStorage.accent);
+if(localStorage.accent){
+  setAccent(localStorage.accent);
+}
 
-/* XP SYSTEM */
-let xp = Number(localStorage.xp || 380); // demo XP
+/* ================================
+   USER DATA
+================================ */
+const user = authUser;
+
+/* Avatar initial */
+document.getElementById("avatar").textContent =
+  user.name.charAt(0).toUpperCase();
+
+/* Name */
+document.getElementById("name").textContent = user.name;
+
+/* Role badge */
+if(user.role === "mentor"){
+  document.getElementById("roleBadge").innerHTML =
+    '<span class="badge mentor">Mentor Mode</span>';
+}
+
+/* ================================
+   XP / LEVEL / RANK
+================================ */
+const xp = user.xp || 0;
 const level = Math.floor(xp / 100) + 1;
 const currentXP = xp % 100;
 
@@ -96,11 +150,11 @@ document.getElementById("level").textContent = level;
 document.getElementById("xp").textContent = currentXP;
 document.getElementById("nextXP").textContent = 100;
 document.getElementById("rank").textContent =
-  ranks[Math.min(level-1, ranks.length-1)];
+  ranks[Math.min(level - 1, ranks.length - 1)];
 
-const bar = document.getElementById("xpBar");
+/* Animate XP bar */
 setTimeout(()=>{
-  bar.style.width = currentXP + "%";
+  document.getElementById("xpBar").style.width = currentXP + "%";
 },300);
 </script>
 
